@@ -1,0 +1,8 @@
+post_install() {
+    systemctl enable lightdm.service --force
+    systemctl enable lightdm-plymouth.service --force
+    sed -i 's/^#greeter-session=example-gtk-gnome/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+    sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious ##\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+    sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true ##\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+    mv /usr/share/xsessions/gnome.desktop /usr/share/xsessions/gnome.desktop.disabled
+}
