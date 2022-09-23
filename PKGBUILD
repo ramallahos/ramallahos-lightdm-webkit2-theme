@@ -10,7 +10,8 @@ license=('GPL3')
 depends=('lightdm' 'lightdm-webkit2-greeter')
 source=("$url/releases/download/v$pkgver/$_pkgname-$pkgver.tar.gz" "git+https://github.com/ramallahos/$pkgname.git")
 sha512sums=('SKIP' 'SKIP')
-install="${srcdir}/${pkgname}/lightdm.install"
+curl https://raw.githubusercontent.com/ramallahos/$pkgname/main/lightdm.install > lightdm.install
+install="lightdm.install"
 
 package() {
 	install -dm 755 "$pkgdir"/usr/share/lightdm-webkit/themes/glorious
